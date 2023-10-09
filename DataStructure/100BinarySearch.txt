@@ -1,0 +1,46 @@
+Search
+(1) Binary search
+/*
+The following code has two functions
+(1) find the index of the first element which is equal to target
+(2) find the index of the first element which is larger than target
+*/
+public static int nearestLeft(int[] arr, int target){
+    int L = 0;
+    int R = arr.length - 1;
+    int index = -1;
+    // we need to decide the current element
+    //when two pointers meet each other
+    while (L <= R){
+        //avoide using L+R directly because this might 
+        //cause overflow, use bit operation because of 
+        // the speed.
+        int mid = L + ((R - L) >> 1);
+        if(arr[mid] >= target){
+            index = mid;
+            //keep moving left until the first 
+            //number which is equal or larger 
+            //than the target.
+            R = mid - 1;
+        }else{
+            L = mid + 1;
+        }
+    }
+    return index;
+}
+
+public static int nearestLeft(int[] arr, int target){
+    int L = 0;
+    int R = arr.length - 1;
+    int index = -1;
+    while (L <= R){
+        int mid = L + ((R - L) >> 1);
+        if(arr[mid] >= target){
+            index = mid;
+            R = mid - 1;
+        }else{
+            L = mid + 1;
+        }
+    }
+    return index;
+}
